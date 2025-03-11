@@ -49,6 +49,24 @@ impl DeepCopy for ValueImpl {
     }
 }
 
+impl DeepCopy for Container {
+    fn deepcopy(&self) -> Self {
+        match self {
+            Container::Vec(v) => Container::Vec(Rc::new(RefCell::new(v.borrow().deepcopy()))),
+            Container::Struct(s) => Container::Struct(Rc::new(RefCell::new(s.borrow().deepcopy()))),
+            Container::Locals(v) => Container::Locals(Rc::new(RefCell::new(v.borrow().deepcopy()))),
+            Container::VecU8(v) => Container::VecU8(Rc::new(RefCell::new(v.borrow().clone()))),
+            Container::VecU64(v) => Container::VecU64(Rc::new(RefCell::new(v.borrow().clone()))),
+            Container::VecU128(v) => Container::VecU128(Rc::new(RefCell::new(v.borrow().clone()))),
+            Container::VecBool(v) => Container::VecBool(Rc::new(RefCell::new(v.borrow().clone()))),
+            Container::VecAddress(v) => Container::VecAddress(Rc::new(RefCell::new(v.borrow().clone()))),
+            Container::VecU16(v) => Container::VecU16(Rc::new(RefCell::new(v.borrow().clone()))),
+            Container::VecU32(v) => Container::VecU32(Rc::new(RefCell::new(v.borrow().clone()))),
+            Container::VecU256(v) => Container::VecU256(Rc::new(RefCell::new(v.borrow().clone()))),
+        }
+    }
+}
+
 /***************************************************************************************
  *
  * Internal Types
