@@ -25,7 +25,7 @@ use std::{
     rc::Rc,
 };
 
-trait DeepCopy {
+pub trait DeepCopy {
     fn deepcopy(&self) -> Self;
 }
 
