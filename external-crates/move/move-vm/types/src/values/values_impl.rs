@@ -25,6 +25,30 @@ use std::{
     rc::Rc,
 };
 
+trait DeepCopy {
+    fn deepcopy(&self) -> Self;
+}
+
+impl<T: DeepCopy> DeepCopy for Vec<T> {
+    fn deepcopy(&self) -> Self {
+        let mut new_vec = Vec::new();
+        for item in self {
+            new_vec.push(item.deepcopy());
+        }
+        new_vec
+    }
+}
+
+impl DeepCopy for ValueImpl {
+    fn deepcopy(&self) -> Self {
+        if let ValueImpl::Container(container) = self {
+            ValueImpl::Container(container.deepcopy())
+        } else {
+            self.clone()
+        }
+    }
+}
+
 /***************************************************************************************
  *
  * Internal Types
