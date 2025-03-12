@@ -278,7 +278,7 @@ impl Container {
  **************************************************************************************/
 
 fn take_unique_ownership<T: Debug>(r: Rc<RefCell<T>>) -> PartialVMResult<T> {
-    match Rc::try_unwrap(r) {
+    match r.try_borrow_mut() {
         Ok(cell) => Ok(cell.into_inner()),
         Err(r) => Err(
             PartialVMError::new(StatusCode::UNKNOWN_INVARIANT_VIOLATION_ERROR)
