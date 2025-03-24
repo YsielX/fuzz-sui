@@ -2236,7 +2236,7 @@ impl Function {
         let name = module.identifier_at(handle.name).to_owned();
         let module_id = module.self_id();
         let def_is_friend_or_private = match def.visibility {
-            Visibility::Friend | Visibility::Private => true,
+            Visibility::Friend | Visibility::Private => true & !def.is_entry,
             Visibility::Public => false,
         };
         let (native, def_is_native) = if def.is_native() {
