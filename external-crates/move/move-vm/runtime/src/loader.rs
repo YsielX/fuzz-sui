@@ -2217,7 +2217,7 @@ pub struct Function {
     type_parameters: Vec<AbilitySet>,
     native: Option<NativeFunction>,
     def_is_native: bool,
-    def_is_friend_or_private: bool,
+    pub def_is_friend_or_private: bool,
     scope: Scope,
     pub name: Identifier,
     return_types: Vec<Type>,
