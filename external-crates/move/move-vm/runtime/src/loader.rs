@@ -2208,20 +2208,20 @@ pub enum Scope {
 // https://github.com/rust-lang/rust/issues/70263
 pub struct Function {
     #[allow(unused)]
-    file_format_version: u32,
-    index: FunctionDefinitionIndex,
-    code: Vec<Bytecode>,
+    pub file_format_version: u32,
+    pub index: FunctionDefinitionIndex,
+    pub code: Vec<Bytecode>,
     pub parameters: Signature,
-    return_: Signature,
-    locals: Signature,
-    type_parameters: Vec<AbilitySet>,
-    native: Option<NativeFunction>,
-    def_is_native: bool,
+    pub return_: Signature,
+    pub locals: Signature,
+    pub type_parameters: Vec<AbilitySet>,
+    pub native: Option<NativeFunction>,
+    pub def_is_native: bool,
     pub def_is_friend_or_private: bool,
-    scope: Scope,
+    pub scope: Scope,
     pub name: Identifier,
-    return_types: Vec<Type>,
-    local_types: Vec<Type>,
+    pub return_types: Vec<Type>,
+    pub local_types: Vec<Type>,
     pub parameter_types: Vec<Type>,
 }
 
